@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* Mayo Clinic Brand Colors */
+  --mayo-blue: #0057b8;
+  --mayo-blue-dark: #003d80;
+  --mayo-blue-light: #2575d6;
+  --mayo-gray: #6b7280;
+  --mayo-gray-light: #f3f4f6;
+  --mayo-gray-dark: #374151;
+  
+  /* Custom Brand Colors */
+  --brand-blue-soft: #a8bad5;
+  --brand-green-soft: #a8d5ba;
+  --brand-coral-soft: #d5a8a8;
+  
+  /* Semantic Colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: var(--mayo-blue);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-poppins);
+  --font-mono: var(--font-geist-mono);
+  
+  /* Mayo Clinic Design System Colors */
+  --color-mayo-blue: var(--mayo-blue);
+  --color-mayo-blue-dark: var(--mayo-blue-dark);
+  --color-mayo-blue-light: var(--mayo-blue-light);
+  --color-mayo-gray: var(--mayo-gray);
+  --color-mayo-gray-light: var(--mayo-gray-light);
+  --color-mayo-gray-dark: var(--mayo-gray-dark);
+  
+  /* Custom Brand Colors */
+  --color-brand-blue-soft: var(--brand-blue-soft);
+  --color-brand-green-soft: var(--brand-green-soft);
+  --color-brand-coral-soft: var(--brand-coral-soft);
+  
+  /* Semantic Colors */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+  
+  /* Typography Scale */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  
+  /* Spacing Scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 2.5rem;
+  --space-3xl: 3rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --mayo-gray-light: #1f2937;
+    --mayo-gray-dark: #d1d5db;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins), var(--font-inter), sans-serif;
+}
+
+/* Mayo Clinic inspired base styles */
+.mayo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.mayo-card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.mayo-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.mayo-button {
+  background-color: #d5a8a8;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.mayo-button:hover {
+  background-color: #c49494;
+}
+
+.mayo-button-outline {
+  background-color: transparent;
+  color: var(--mayo-blue);
+  border: 2px solid var(--mayo-blue);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease-in-out;
+}
+
+.mayo-button-outline:hover {
+  background-color: var(--mayo-blue);
+  color: white;
+}
