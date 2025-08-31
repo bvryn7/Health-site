@@ -1,61 +1,74 @@
-import Link from 'next/link';
+'use client';
 
-export function HeroSection() {
+import { HeroBands } from './HeroBands';
+
+interface HeroSectionProps {
+  title?: string;
+  subtitle?: string;
+  showPhone?: boolean;
+  backgroundImage?: string;
+}
+
+export function HeroSection({ 
+  title = "Your Health. Your Family. Our Priority.",
+  subtitle,
+  showPhone = true,
+  backgroundImage = "/images/pexels-elly-fairytale-4543640.jpg"
+}: HeroSectionProps) {
   return (
-    <section className="relative h-screen w-full overflow-hidden">
-      {/* Background Image */}
-      <img 
-        src="/family.jpg" 
-        alt="Family background"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      {/* Light overlay for better text readability */}
-      <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-
-      {/* Content */}
-      <div className="relative z-20 h-full flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8">
-              Hope for the Future.
-            </h1>
-            
-            <Link 
+    <section 
+      className="relative h-screen flex items-center overflow-hidden bg-gray-200 bg-cover bg-center"
+      style={{ 
+        backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined 
+      }}
+    >
+      {/* Dark overlay gradient for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
+      
+      {/* Main content */}
+      <div className="relative max-w-6xl mx-auto px-6 sm:px-12 z-10 w-full">
+        <div className="max-w-2xl text-center md:text-left" style={{ marginLeft: '-40px' }}>
+          <h1 className="font-extrabold text-5xl leading-tight mb-4" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+            {title}
+          </h1>
+          
+          {subtitle && (
+            <p className="text-gray-200 text-xl mb-8 leading-relaxed">
+              {subtitle}
+            </p>
+          )}
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            {/* Main CTA Button */}
+            <a 
               href="/appointments"
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center justify-center text-white font-bold px-8 py-4 rounded-lg transition-colors duration-200 text-lg hover:opacity-90"
+              style={{ backgroundColor: '#4A3B53' }}
             >
               Call For Appointment
-            </Link>
+            </a>
+            
           </div>
         </div>
       </div>
 
-      {/* Angled Geometric Shapes at Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-10">
-        {/* Layer 1 - Deepest */}
+      {/* Angled bottom overlays - large, bold, layered prisms */}
+      <div className="absolute bottom-0 left-0 right-0">
+        {/* Bottom layer - darkest, tallest */}
         <div 
-          className="absolute bottom-0 left-0 right-0 h-32 sm:h-40 lg:h-48 bg-purple-800"
-          style={{
-            clipPath: 'polygon(0% 60%, 100% 100%, 0% 100%)'
+          className="absolute right-0 h-96"
+          style={{ 
+            bottom: '0px',
+            left: '-1500px',
+            backgroundColor: '#4b5563',
+            clipPath: 'polygon(0 100%, 100% 100%, 100% 55%, 50% 99.9%)' 
           }}
         ></div>
         
-        {/* Layer 2 - Middle */}
-        <div 
-          className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 lg:h-40 bg-purple-600"
-          style={{
-            clipPath: 'polygon(0% 40%, 100% 80%, 100% 100%, 0% 100%)'
-          }}
-        ></div>
         
-        {/* Layer 3 - Top */}
-        <div 
-          className="absolute bottom-0 left-0 right-0 h-16 sm:h-24 lg:h-32 bg-purple-400"
-          style={{
-            clipPath: 'polygon(0% 20%, 100% 60%, 100% 100%, 0% 100%)'
-          }}
-        ></div>
       </div>
+
+      <HeroBands />
     </section>
   );
 }

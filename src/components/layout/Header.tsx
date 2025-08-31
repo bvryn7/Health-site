@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { IconButton, AppBar, Toolbar, Typography, Box, Drawer, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
-import { PersonOutline, Search, Menu, Close } from '@mui/icons-material';
+import { PersonOutline, Search, Menu, Close, Phone } from '@mui/icons-material';
+import { AcceptingPatientsCard } from '../ui/AcceptingPatientsCard';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,39 +33,65 @@ export const Header: React.FC = () => {
         color: 'black'
       }}
     >
-      <Toolbar sx={{ justifyContent: 'space-between', maxWidth: '1200px', mx: 'auto', width: '100%' }}>
+      <Toolbar sx={{ justifyContent: 'space-between', maxWidth: '1200px', mx: 'auto', width: '100%', py: 2, minHeight: '80px' }}>
         {/* Logo */}
-        <Typography 
-          variant="h6" 
+        <Box
           component={Link}
           href="/"
           sx={{ 
-            fontWeight: 'bold',
-            color: 'black',
+            display: 'flex',
+            alignItems: 'center',
             textDecoration: 'none',
-            '&:hover': { color: '#4b5563' }
+            '&:hover': { opacity: 0.8 }
           }}
         >
-          A+ Family Medicine
-        </Typography>
+                     <img 
+             src="/a_plus_family_medicine.png" 
+             alt="A+ Family Medicine Logo" 
+             style={{ 
+               height: '60px', 
+               width: 'auto',
+               maxWidth: '250px'
+             }}
+           />
+        </Box>
         
+        {/* Center content between logo and right items */}
+        <Box sx={{ display: 'flex', alignItems: 'center', flex: 1, justifyContent: 'center' }}>
+          <AcceptingPatientsCard />
+        </Box>
+
         {/* Navigation Items */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-          {/* Request Appointment */}
-          <Typography
-            component={Link}
-            href="/appointments"
-            sx={{
-              color: 'black',
-              textDecoration: 'none',
-              fontWeight: 500,
-              '&:hover': { color: '#4b5563' }
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          {/* Call Phone Number */}
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: 1,
+              backgroundColor: '#4A3B53',
+              px: 3,
+              py: 1.5,
+              borderRadius: 1,
+              cursor: 'pointer',
+              '&:hover': {
+                backgroundColor: '#3d3146'
+              }
             }}
           >
-            Request appointment
-          </Typography>
+            <Phone sx={{ color: 'white', fontSize: 20 }} />
+            <Typography
+              sx={{
+                color: 'white',
+                fontWeight: 'bold',
+                fontSize: '1rem',
+              }}
+            >
+              Call 616-285-6450
+            </Typography>
+          </Box>
           
-          {/* Log in */}
+          {/* Patient Portal */}
           <Box 
             component={Link}
             href="/patient-portal"
@@ -76,8 +103,8 @@ export const Header: React.FC = () => {
               '&:hover': { color: '#4b5563' }
             }}
           >
-            <PersonOutline sx={{ mr: 1, fontSize: 20 }} />
-            <Typography>Log in</Typography>
+            <PersonOutline sx={{ mr: 1, fontSize: 24 }} />
+            <Typography sx={{ fontSize: '1.1rem' }}>Patient Portal</Typography>
           </Box>
           
           {/* Search */}
