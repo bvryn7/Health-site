@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { IconButton, AppBar, Toolbar, Typography, Box, Drawer, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
-import { PersonOutline, Search, Menu, Close, Phone } from '@mui/icons-material';
+import { PersonOutline, Search, Menu, Close, Phone, Home, MedicalServices, Group, CalendarToday, PersonAdd, ContactMail } from '@mui/icons-material';
 import { AcceptingPatientsCard } from '../ui/AcceptingPatientsCard';
 
 export const Header: React.FC = () => {
@@ -14,13 +14,13 @@ export const Header: React.FC = () => {
   };
 
   const menuItems = [
-    { text: 'Home', href: '/', icon: <Search /> },
-    { text: 'Services', href: '/services', icon: <Search /> },
-    { text: 'Our Team', href: '/our-team', icon: <PersonOutline /> },
+    { text: 'Home', href: '/', icon: <Home /> },
+    { text: 'Services', href: '/services', icon: <MedicalServices /> },
+    { text: 'Our Team', href: '/our-team', icon: <Group /> },
     { text: 'Patient Portal', href: '/patient-portal', icon: <PersonOutline /> },
-    { text: 'Request Appointment', href: '/appointments', icon: <Search /> },
-    { text: 'New Patients', href: '/new-patients', icon: <PersonOutline /> },
-    { text: 'Contact', href: '/contact', icon: <Search /> },
+    { text: 'Request Appointment', href: '/appointments', icon: <CalendarToday /> },
+    { text: 'New Patients', href: '/new-patients', icon: <PersonAdd /> },
+    { text: 'Contact', href: '/contact', icon: <ContactMail /> },
   ];
 
   return (
@@ -33,7 +33,7 @@ export const Header: React.FC = () => {
         color: 'black'
       }}
     >
-      <Toolbar sx={{ justifyContent: 'space-between', maxWidth: '1200px', mx: 'auto', width: '100%', py: 2, minHeight: '80px' }}>
+      <Toolbar sx={{ justifyContent: 'space-between', maxWidth: '1200px', mx: 'auto', width: '100%', py: 2, minHeight: '80px', px: { xs: 2, sm: 3 } }}>
         {/* Logo */}
         <Box
           component={Link}
@@ -45,49 +45,70 @@ export const Header: React.FC = () => {
             '&:hover': { opacity: 0.8 }
           }}
         >
-                     <img 
-             src="/a_plus_family_medicine.png" 
-             alt="A+ Family Medicine Logo" 
-             style={{ 
-               height: '60px', 
-               width: 'auto',
-               maxWidth: '250px'
-             }}
-           />
+          <Box
+            component="img"
+            src="/a_plus_family_medicine.png" 
+            alt="A+ Family Medicine Logo" 
+            sx={{ 
+              height: { xs: '50px', sm: '60px' }, 
+              width: 'auto',
+              maxWidth: { xs: '180px', sm: '250px' }
+            }}
+          />
         </Box>
         
         {/* Center content between logo and right items */}
-        <Box sx={{ display: 'flex', alignItems: 'center', flex: 1, justifyContent: 'center' }}>
+        <Box sx={{ 
+          display: { xs: 'none', sm: 'flex' }, 
+          alignItems: 'center', 
+          flex: { sm: 1 }, 
+          justifyContent: 'center',
+          mx: { sm: 2, md: 4 }
+        }}>
           <AcceptingPatientsCard />
         </Box>
 
         {/* Navigation Items */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 2, sm: 3, md: 4 } }}>
           {/* Call Phone Number */}
           <Box 
+            component="a"
+            href="tel:616-285-6450"
             sx={{ 
               display: 'flex', 
               alignItems: 'center', 
               gap: 1,
               backgroundColor: '#4A3B53',
-              px: 3,
-              py: 1.5,
+              px: { xs: 2, sm: 3 },
+              py: { xs: 1.2, sm: 1.5 },
               borderRadius: 1,
               cursor: 'pointer',
+              textDecoration: 'none',
               '&:hover': {
                 backgroundColor: '#3d3146'
               }
             }}
           >
-            <Phone sx={{ color: 'white', fontSize: 20 }} />
+            <Phone sx={{ color: 'white', fontSize: { xs: 18, sm: 20 } }} />
             <Typography
               sx={{
                 color: 'white',
                 fontWeight: 'bold',
-                fontSize: '1rem',
+                fontSize: { xs: '0.9rem', sm: '1rem' },
+                display: { xs: 'none', sm: 'block' }
               }}
             >
               Call 616-285-6450
+            </Typography>
+            <Typography
+              sx={{
+                color: 'white',
+                fontWeight: 'bold',
+                fontSize: '0.9rem',
+                display: { xs: 'block', sm: 'none' }
+              }}
+            >
+              Call
             </Typography>
           </Box>
           
@@ -137,9 +158,16 @@ export const Header: React.FC = () => {
       >
         <Box sx={{ p: 2, borderBottom: '1px solid #e5e7eb' }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-              A+ Family Medicine
-            </Typography>
+            <Box
+              component="img"
+              src="/a_plus_family_medicine.png"
+              alt="A+ Family Medicine Logo"
+              sx={{
+                height: '40px',
+                width: 'auto',
+                maxWidth: '150px'
+              }}
+            />
             <IconButton onClick={handleMenuToggle} sx={{ color: 'black' }}>
               <Close />
             </IconButton>
@@ -156,7 +184,8 @@ export const Header: React.FC = () => {
               sx={{
                 '&:hover': { backgroundColor: '#f3f4f6' },
                 textDecoration: 'none',
-                color: 'inherit'
+                color: 'inherit',
+                cursor: 'pointer'
               }}
             >
               <ListItemIcon sx={{ color: 'black', minWidth: 40 }}>
